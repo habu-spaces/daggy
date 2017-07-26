@@ -16,6 +16,8 @@
     "sanctuary-type-identifiers": "1.0.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
     "benchmark": "2.1.3",
     "cli-table": "0.3.1",
     "colors": "1.1.2",
@@ -26,6 +28,7 @@
     "xyz": "2.1.x"
   },
   "scripts": {
+    "install-pre-commit-hook": "ln -s $(pwd)/bin/pre-commit $(pwd)/.git/hooks/pre-commit",
     "lint": "standard bench/*.js src/*.js test/*.js",
     "lint:fix": "npm run lint -- --fix",
     "release-major": "xyz --repo git@github.com:fantasyland/daggy.git --increment major",
@@ -33,11 +36,12 @@
     "release-patch": "xyz --repo git@github.com:fantasyland/daggy.git --increment patch",
     "test": "tap -R tap test/*.js",
     "check": "npm run lint && npm run test",
-    "bench": "node bench/"
+    "bench": "node bench/",
+    "build": "babel ./src -d ./dist"
   },
   "files": [
     "src/*.js"
   ],
-  "main": "src/daggy.js",
+  "main": "dist/daggy.js",
   "version": "1.1.0"
 }
